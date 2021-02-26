@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    <script src="../static/js/jquery3.2.1.min.js"></script>
+</head>
+<body>
+<div class="materialContainer">
+  <div class="box">
+      <div class="title">登录</div>
+      <form class="login-form" action="login.html" method="post">
+          <div class="input">
+              <input id="username" name="username" placeholder="用户名"/>
+              <span class="spin"></span>
+          </div>
+          <div class="input">
+              <input type="password" id="pass" name="password" placeholder="密码" />
+              <span class="spin"></span>
+          </div>
+          <div class="button login">
+              <button type="submit" onclick="login()">登录</button>
+          </div>
+      </form>
+  </div>
+</div>
+<script type="text/javascript">
+    function login(){
+        var username=$("#username").val();
+        var password=$("#pass").val();
+        if (username == null || password == null){
+            alert("用户名或密码不能为空！")
+        }
+        $.ajax({
+            type:"post",
+            url: "login",
+            dataType:"json",
+            data:{
+                username:username,
+                password:password
+            },
+            success:function (data,status) {
+                if (data.code=="0"){
+                    alert("登录成功")
+                }
+                alert("登录失败");
+            }
+        })
+    }
+</script>
+</body>
+</html>
